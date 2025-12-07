@@ -47,7 +47,8 @@
     --logo_color: #222b36;
     --alertColor: #000000;
     --alertBackground: rgb(230 230 230);
-    --modelBackground: #d4d4d4;
+    --modelBackground: #ffffff;
+    --modelTextColor: #333333;
     --scrollbarColor:#d0d0d0;
 }
 
@@ -88,7 +89,8 @@
     --logo_color: #fefefe;
     --alertColor: #ffffff;
     --alertBackground: rgb(30 30 30);
-    --modelBackground: #1c1c1e;
+    --modelBackground: #2c2c2e;
+    --modelTextColor: #fefefe;
     --scrollbarColor:#4a4a4a;
   }
 }
@@ -1952,22 +1954,24 @@ form.inline + form.inline,
 
 .modal > h4 {
 	margin: .5em 0;
+	color: var(--modelTextColor);
 }
 
 .modal ul {
 	margin-left: 2.2em;
 	word-break: break-word;
+	color: var(--modelTextColor);
 }
 
 .modal li {
 	list-style-type: square;
-	color: #808080;
+	color: var(--modelTextColor);
 }
 
 .modal p {
 	padding-left: .25rem;
 	word-break: break-word;
-	color: #fff;
+	color: var(--modelTextColor);
 }
 
 .modal label.btn {
