@@ -97,19 +97,17 @@
 
 @font-face {
     font-family: 'icomoon';
-    src: url('../fonts/font.eot') format('embedded-opentype'),
-    url('../fonts/font.ttf') format('truetype'),
-    url('../fonts/font.woff') format('woff'),
-    url('../fonts/font.svg') format('svg');
+    src: url('../fonts/font.woff') format('woff'),
+    url('../fonts/font.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
   font-family: 'design';
-  src: url('../fonts/iconfont-Regular.woff2') format('woff2'),
-       url('../fonts/iconfont-Regular.woff') format('woff'),
-       url('../fonts/iconfont-Regular.ttf') format('truetype');
+  src: url('../fonts/iconfont.woff2') format('woff2'),
+       url('../fonts/iconfont.woff') format('woff'),
+       url('../fonts/iconfont.ttf') format('truetype');
 }
 
 @font-face {
