@@ -10,6 +10,9 @@ LUCI_DEPENDS:=
 PKG_VERSION:=7.0
 PKG_RELEASE:=20251205
 
+LUCI_MINIFY_CSS:=
+CONFIG_LUCI_CSSTIDY:=
+
 include $(TOPDIR)/feeds/luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature
