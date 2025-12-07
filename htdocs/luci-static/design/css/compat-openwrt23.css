@@ -1,0 +1,431 @@
+/**
+ * OpenWrt 23/24 兼容性样式补丁
+ * 
+ * 这个文件包含针对 OpenWrt 23.x 和 24.x 的样式修复
+ * 新版 LuCI 使用了一些新的 CSS 类名和结构
+ */
+
+/* ============================================
+   1. 新版 LuCI 视图容器兼容
+   ============================================ */
+
+/* 新版 LuCI 使用 #view 作为主要内容容器 */
+#view {
+    padding: 0;
+}
+
+#view > * {
+    margin-bottom: 1rem;
+}
+
+/* 兼容新版 LuCI 的 .cbi-map 结构 */
+.cbi-map {
+    margin-top: 10px;
+}
+
+/* ============================================
+   2. 新版表单元素样式
+   ============================================ */
+
+/* 新版 LuCI 的 input 样式兼容 */
+.cbi-input-text,
+.cbi-input-password,
+.cbi-input-select {
+    color: var(--inputtextColor);
+    padding: 5px 10px;
+    font-size: 0.92rem;
+    border: var(--inputBorder);
+    background-color: var(--inputbgColor);
+    border-radius: 8px;
+    height: 2.8rem;
+    line-height: 2.8rem;
+    max-width: 550px;
+}
+
+/* 新版 checkbox 和 radio 样式 */
+.cbi-input-checkbox,
+.cbi-input-radio {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    accent-color: var(--activeColor);
+}
+
+/* ============================================
+   3. 新版按钮样式兼容
+   ============================================ */
+
+/* 新版 LuCI 按钮类名 */
+.btn.cbi-button,
+button.cbi-button {
+    -webkit-appearance: none;
+    appearance: none;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #337ab7;
+    transition: all 0.2s ease-in-out;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+    min-width: 80px;
+    padding: 0 8px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 8px;
+}
+
+/* 新版 primary/positive 按钮 */
+.cbi-button-positive,
+.cbi-button-action {
+    color: var(--bttextColor) !important;
+    background-color: var(--activeColor) !important;
+}
+
+.cbi-button-positive:hover,
+.cbi-button-action:hover {
+    background-color: #4a8a80 !important;
+}
+
+/* 新版 negative 按钮 */
+.cbi-button-negative {
+    color: #fff !important;
+    background-color: #d9534f !important;
+}
+
+.cbi-button-negative:hover {
+    background-color: #c9302c !important;
+}
+
+/* 新版 neutral 按钮 */
+.cbi-button-neutral {
+    color: #fff !important;
+    background-color: #617486 !important;
+}
+
+/* ============================================
+   4. 新版表格样式兼容
+   ============================================ */
+
+/* 新版 LuCI 表格结构 */
+.table.cbi-section-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table.cbi-section-table .tr {
+    display: table-row;
+}
+
+.table.cbi-section-table .th,
+.table.cbi-section-table .td {
+    display: table-cell;
+    padding: 12px;
+    vertical-align: middle;
+}
+
+/* 新版表格标题行 */
+.tr.cbi-section-table-titles {
+    background-color: var(--inputbgColor);
+    font-weight: bold;
+}
+
+/* ============================================
+   5. 新版下拉菜单兼容
+   ============================================ */
+
+/* 新版 cbi-dropdown 样式 */
+.cbi-dropdown {
+    position: relative;
+    display: inline-flex;
+    min-height: 2.8rem;
+    border: var(--inputBorder);
+    background-color: var(--inputbgColor);
+    border-radius: 8px;
+}
+
+.cbi-dropdown > ul {
+    display: flex;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+    margin: 0 !important;
+    padding: 0;
+    list-style: none;
+}
+
+.cbi-dropdown > ul > li {
+    display: flex;
+    align-items: center;
+    padding: 0.5em;
+}
+
+.cbi-dropdown[open] > ul.dropdown {
+    position: absolute;
+    z-index: 1100;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--sectionbgColor);
+    border: var(--inputBorder);
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cbi-dropdown[open] > ul.dropdown > li {
+    padding: 0.5em 1em;
+    cursor: pointer;
+}
+
+.cbi-dropdown[open] > ul.dropdown > li:hover {
+    background-color: var(--activeColor);
+    color: #fff;
+}
+
+/* ============================================
+   6. 新版标签页样式兼容
+   ============================================ */
+
+/* 新版 LuCI 标签页 */
+.cbi-tabmenu {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: var(--tabmenuBottom);
+    margin-bottom: 1rem;
+}
+
+.cbi-tabmenu > li {
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.cbi-tabmenu > li > a {
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: var(--textColor);
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.cbi-tabmenu > li.cbi-tab > a,
+.cbi-tabmenu > li > a:hover {
+    color: var(--activeColor);
+    border-bottom-color: var(--activeColor);
+}
+
+/* ============================================
+   7. 新版模态框样式兼容
+   ============================================ */
+
+/* 新版 modal 样式 */
+.modal {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 90%;
+    max-width: 600px;
+    min-height: 32px;
+    margin: 5em auto;
+    padding: 1em;
+    border-radius: 8px;
+    background: var(--modelBackground);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.modal > * {
+    flex-basis: 100%;
+    margin-bottom: 0.5em;
+}
+
+.modal > h4 {
+    color: var(--textColor);
+    margin-bottom: 1em;
+}
+
+.modal > .btn,
+.modal > .cbi-button {
+    flex-basis: auto;
+    margin: 0.25em;
+}
+
+/* ============================================
+   8. 新版进度条样式兼容
+   ============================================ */
+
+/* 新版进度条 */
+.cbi-progressbar {
+    position: relative;
+    min-width: 11rem;
+    height: 1.5rem;
+    background-color: var(--progressbarColor);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.cbi-progressbar > div {
+    height: 100%;
+    background: var(--progressbar);
+    transition: width 0.25s ease-in;
+}
+
+.cbi-progressbar::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: attr(title);
+    text-align: center;
+    line-height: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--progressbartxtColor);
+}
+
+/* ============================================
+   9. 新版状态指示器兼容
+   ============================================ */
+
+/* 新版状态徽章 */
+.ifacebadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.3rem 0.6rem;
+    background-color: var(--activeColor);
+    color: #fff;
+    border-radius: 8px;
+    font-size: 0.85rem;
+}
+
+.ifacebadge > img,
+.ifacebadge > em {
+    width: 16px;
+    height: 16px;
+}
+
+/* 区域徽章 */
+.zonebadge {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+}
+
+/* ============================================
+   10. 新版响应式布局兼容
+   ============================================ */
+
+@media screen and (max-width: 992px) {
+    /* 新版移动端菜单 */
+    .main-left {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .main-left.active,
+    .main-left[style*="width: 17rem"],
+    .main-left:not([style*="width: 0"]) {
+        transform: translateX(0);
+    }
+}
+
+/* ============================================
+   11. 新版 LuCI 特定页面修复
+   ============================================ */
+
+/* 系统概览页面 */
+[data-page="admin-status-overview"] .cbi-section {
+    margin-bottom: 1rem;
+}
+
+/* 网络接口页面 */
+[data-page="admin-network-network"] .ifacebox {
+    margin: 0.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* 无线页面 */
+[data-page="admin-network-wireless"] .cbi-section-table {
+    overflow-x: auto;
+}
+
+/* 软件包页面 */
+[data-page="admin-system-opkg"] .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+[data-page="admin-system-opkg"] .controls input[type="text"] {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* ============================================
+   12. 深色模式增强
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+    /* 新版深色模式下的代码块 */
+    code, pre {
+        background-color: #2d2d2d;
+        color: #f8f8f2;
+    }
+    
+    /* 新版深色模式下的表格 */
+    .table.cbi-section-table .tr:nth-child(even) {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    /* 新版深色模式下的输入框 */
+    .cbi-input-text:focus,
+    .cbi-input-password:focus,
+    .cbi-input-select:focus {
+        border-color: var(--activeColor);
+        box-shadow: 0 0 6px var(--activeColor);
+    }
+}
+
+/* ============================================
+   13. 打印样式
+   ============================================ */
+
+@media print {
+    .main-left,
+    .navbar,
+    header,
+    .showSide,
+    .darkMask {
+        display: none !important;
+    }
+    
+    .main-right {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+}
+
+/* ============================================
+   14. 无障碍访问增强
+   ============================================ */
+
+/* 焦点可见性 */
+:focus-visible {
+    outline: 2px solid var(--activeColor);
+    outline-offset: 2px;
+}
+
+/* 减少动画 (用户偏好) */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

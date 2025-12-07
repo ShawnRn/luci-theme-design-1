@@ -47,7 +47,8 @@
     --logo_color: #222b36;
     --alertColor: #000000;
     --alertBackground: rgb(230 230 230);
-    --modelBackground: #d4d4d4;
+    --modelBackground: #ffffff;
+    --modelTextColor: #333333;
     --scrollbarColor:#d0d0d0;
 }
 
@@ -88,7 +89,8 @@
     --logo_color: #fefefe;
     --alertColor: #ffffff;
     --alertBackground: rgb(30 30 30);
-    --modelBackground: #1c1c1e;
+    --modelBackground: #2c2c2e;
+    --modelTextColor: #fefefe;
     --scrollbarColor:#4a4a4a;
   }
 }
@@ -1339,7 +1341,7 @@ form.inline + form.inline,
 
 .tabs > li:hover {
 	cursor: pointer;
-	border-bottom-color: #c9c9c9;
+	border-bottom-color: transparent;
 }
 
 .tabs > li > a {
@@ -1952,22 +1954,24 @@ form.inline + form.inline,
 
 .modal > h4 {
 	margin: .5em 0;
+	color: var(--modelTextColor);
 }
 
 .modal ul {
 	margin-left: 2.2em;
 	word-break: break-word;
+	color: var(--modelTextColor);
 }
 
 .modal li {
 	list-style-type: square;
-	color: #808080;
+	color: var(--modelTextColor);
 }
 
 .modal p {
 	padding-left: .25rem;
 	word-break: break-word;
-	color: #fff;
+	color: var(--modelTextColor);
 }
 
 .modal label.btn {
@@ -2324,6 +2328,22 @@ td > .ifacebadge,
 .cbi-value-field .cbi-input-checkbox,
 .cbi-value-field .cbi-input-radio {
 	margin-top: .1rem;
+}
+
+/* 去掉 checkbox 和 radio 的背景和边框 */
+input[type="checkbox"],
+input[type="radio"] {
+	background: transparent !important;
+	background-color: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
+	outline: none !important;
+}
+
+input[type="checkbox"]:focus,
+input[type="radio"]:focus {
+	box-shadow: none !important;
+	outline: none !important;
 }
 
 .cbi-value-field > ul > li {
