@@ -2330,6 +2330,22 @@ td > .ifacebadge,
 	margin-top: .1rem;
 }
 
+/* 去掉 checkbox 和 radio 的背景和边框 */
+input[type="checkbox"],
+input[type="radio"] {
+	background: transparent !important;
+	background-color: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
+	outline: none !important;
+}
+
+input[type="checkbox"]:focus,
+input[type="radio"]:focus {
+	box-shadow: none !important;
+	outline: none !important;
+}
+
 .cbi-value-field > ul > li {
 	display: flex;
 }
