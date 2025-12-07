@@ -97,7 +97,6 @@
 
 @font-face {
     font-family: 'icomoon';
-    src: url('../fonts/font.eot');
     src: url('../fonts/font.eot') format('embedded-opentype'),
     url('../fonts/font.ttf') format('truetype'),
     url('../fonts/font.woff') format('woff'),
@@ -108,18 +107,16 @@
 
 @font-face {
   font-family: 'design';
-  src: url('');
-  src: url('?#iefix') format('embedded-opentype'),
-  url('../fonts/iconfont-Regular.woff2') format('woff2'),
-  url('../fonts/iconfont-Regular.woff') format('woff'),
-  url('../fonts/iconfont-Regular.ttf') format('truetype'),
-  url('#iconfont') format('svg');
+  src: url('../fonts/iconfont-Regular.woff2') format('woff2'),
+       url('../fonts/iconfont-Regular.woff') format('woff'),
+       url('../fonts/iconfont-Regular.ttf') format('truetype');
 }
 
-@font-face{
-    font-family: 'Cocon-Regular-Font';
-    src : url('../fonts/Cocon-Regular-Font.otf') format('opentype');
+@font-face {
+  font-family: 'cocon_regular_font';
+  src: url('../fonts/Cocon-Regular-Font.otf') format('opentype');
 }
+
 div{
     font-family: 'HYk2gj';
 }
@@ -507,7 +504,7 @@ header > .fill > .container > #logo > img {
 
 header > .fill > .container > .brand {
     font-size: 25px;
-    font-family: "Cocon-Regular-Font";
+    font-family: "cocon_regular_font";
     /*font-weight:bold;*/
     line-height:60px;
     /*color: white;*/
@@ -2330,7 +2327,7 @@ td > .ifacebadge,
 	margin-top: .1rem;
 }
 
-/* 去掉 checkbox �?radio 的背景和边框 */
+/* 去掉 checkbox �?radio 的背景和边框 */
 input[type="checkbox"],
 input[type="radio"] {
 	background: transparent !important;
