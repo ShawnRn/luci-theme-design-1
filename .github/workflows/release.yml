@@ -44,7 +44,13 @@ jobs:
         run: |
           ./scripts/prepare-package.sh
           rm -rf sdk/package/luci-theme-design
-          cp -a . sdk/package/luci-theme-design
+          mkdir -p sdk/package/luci-theme-design
+          rsync -a \
+            --exclude '.git' \
+            --exclude 'sdk' \
+            --exclude 'dist' \
+            --exclude 'release-dist' \
+            ./ sdk/package/luci-theme-design/
 
       - name: Build package
         run: |
