@@ -1,0 +1,146 @@
+.main>.main-left>.nav>.active>.menu2,
+.main>.main-left>.nav>.slide>.menu.active,
+.main>.main-left>.nav>.slide>.slide-menu>.active {
+	background-color: var(--activeColor);
+	border-radius: 8px;
+}
+
+.main>.main-left>.nav>.active>.menu2,
+.main>.main-left>.nav>.slide>.menu.active,
+.main>.main-left>.nav>.slide>.slide-menu>.active>a {
+	color: #fff !important;
+}
+
+.main>.main-left>.nav>.slide>.slide-menu {
+	padding-left: .25rem;
+	margin-top: .2rem;
+}
+
+.main>.main-left>.nav>.slide>.slide-menu>li {
+	margin-top: .35rem;
+}
+
+.main>.main-left>.nav>.slide>.slide-menu>li>a {
+	padding-left: 3rem;
+	border-radius: 8px;
+}
+
+.main>.main-left>.nav>.slide>.menu,
+.main>.main-left>.nav>.slide>.menu2 {
+	position: relative;
+}
+
+.main>.main-left>.nav>.slide>.menu::after {
+	top: .72rem;
+	right: .6rem;
+}
+
+.main>.main-left>.nav>.slide>a:before,
+.main>.main-left>.nav>li>a:before {
+	left: -14px;
+	width: 1.3rem;
+	text-align: center;
+}
+
+.main>.main-left>.nav>li>a[data-name="quickstart"]:before,
+.main>.main-left>.nav>li>a[data-title="QuickStart"]:before,
+.main>.main-left>.nav>li>a[data-title="首页"]:before,
+.main>.main-left>.nav>li>a[data-title="主页"]:before {
+	content: "\e719";
+}
+
+.main>.main-left>.nav>.slide>a[data-name="status"]:before {
+	content: "\e6b8";
+}
+
+.main>.main-left>.nav>.slide>a[data-name="system"]:before {
+	content: "\e645";
+}
+
+.main>.main-left>.nav>.slide>a[data-name="services"]:before,
+.main>.main-left>.nav>.slide>a[data-name="service"]:before {
+	content: "\e6cb";
+}
+
+.main>.main-left>.nav>.slide>a[data-name="network"]:before {
+	content: "\72";
+}
+
+.main>.main-left>.nav>.slide>a[data-name="nas"]:before {
+	content: "\eb04";
+}
+
+.main>.main-left>.nav>li>a[data-name="istore"]:before {
+	content: "\e676";
+}
+
+.main>.main-left>.nav>li>a[data-name="logout"]:before {
+	content: "\e641";
+}
+
+.node-main-login .showSide,
+.node-main-login .navbar,
+.node-main-login .main-left,
+.node-main-login footer {
+	display: none !important;
+}
+
+.node-main-login .main-right {
+	width: 100%;
+	border-left: none;
+}
+
+.node-main-login #maincontent {
+	display: flex;
+	min-height: calc(100vh - 56px);
+	align-items: center;
+	justify-content: center;
+}
+
+.node-main-login #maincontent > .container {
+	width: min(100%, 560px);
+	margin: 40px auto;
+}
+
+.node-main-login .cbi-map {
+	background: var(--sectionbgColor);
+	padding: 12px;
+	border-radius: 14px;
+	box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
+}
+
+.node-main-login .right {
+	text-align: center !important;
+	padding: 8px 0 4px;
+}
+
+.node-main-login .cbi-button-apply {
+	min-width: 140px;
+}
+
+#maincontent>.container {
+	margin: 24px 28px 72px;
+}
+
+.main-right {
+	background: var(--bg);
+}
+
+.main-left {
+	box-shadow: inset -1px 0 0 rgba(0, 0, 0, .05);
+}
+
+#indicators {
+	top: 6px;
+	right: 22px;
+}
+
+@media screen and (max-width: 992px) {
+	#maincontent>.container {
+		margin: 20px;
+	}
+
+	.node-main-login #maincontent {
+		min-height: calc(100vh - 56px);
+	}
+}

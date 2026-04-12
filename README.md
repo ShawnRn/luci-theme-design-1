@@ -19,6 +19,26 @@
 
 # luci-theme-design
 
+这个 fork 面向 `OpenWrt / ImmortalWrt 24.10` 的 LuCI `ucode` 运行时做了兼容整理，目标是保留原版 Design 的视觉与交互，同时避免：
+
+- 登录页模板直接报错
+- 侧边栏不渲染或不能展开
+- 图标映射丢失
+- 主题安装后自动抢占当前主题
+
+## 当前 fork 额外内容
+
+- 新增 `ucode` 版 `header/footer/sysauth` 模板
+- 新增 `menu-design.js`，兼容 24.10 的菜单树渲染
+- 新增 `codex-compat.css` 处理登录页、侧栏、图标和内容区布局
+- GitHub Actions 可为多个 `OpenWrt 24.10.0` 目标架构构建 `ipk`
+- `scripts/prepare-package.sh` 用于把 `dev/` 资源同步到打包目录
+
+## 注意
+
+- 默认不会自动切换当前 LuCI 主题
+- macOS 本地无法直接运行 Linux OpenWrt SDK，实际构建应交给 GitHub Actions
+
  luci-theme-design 是一个针对移动端和PC端的沉浸式WebApp体验和优化的OpenWrt LuCI主题
 - **luci-theme-design**基于luci-theme-neobird二次开发, 适用于[lede](https://github.com/coolsnowwolf/lede)
 - main支持lede源码的lua版本

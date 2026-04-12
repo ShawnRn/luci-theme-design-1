@@ -1,0 +1,120 @@
+{#
+ Compatible ucode theme header for LuCI 24.10+.
+ Uses bootstrap base styles and Design overlays.
+-#}
+
+{%
+	import { getuid, getspnam } from 'luci.core';
+	import { access } from 'fs';
+	import { cursor } from 'uci';
+
+	const boardinfo = ubus.call('system', 'board');
+	let cfg = cursor();
+	let mode = 'normal';
+	let navbar = 'display';
+	let navbar_proxy = 'openclash';
+	let body_class = `lang_${dispatcher.lang}`;
+
+	if (access('/etc/config/design')) {
+		mode = cfg.get_first('design', 'global', 'mode') ?? 'normal';
+		navbar = cfg.get_first('design', 'global', 'navbar') ?? 'display';
+		navbar_proxy = cfg.get_first('design', 'global', 'navbar_proxy') ?? 'openclash';
+	}
+
+	if (ctx.authsession)
+		body_class = `${body_class} logged-in`;
+	else
+		body_class = `${body_class} node-main-login`;
+
+	http.prepare_content('text/html; charset=UTF-8');
+-%}
+<!DOCTYPE html>
+<html lang="{{ dispatcher.lang }}">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+	<title>{{ striptags(`${boardinfo.hostname ?? '?'}${node?.title ? ` - ${node.title}` : ''}`) }} - LuCI</title>
+	<meta name="format-detection" content="telephone=no, email=no">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="theme-color" content="black">
+	<link rel="manifest" href="{{ media }}/manifest.json">
+	<link rel="icon" href="{{ media }}/favicon.ico">
+	<link rel="apple-touch-icon" href="{{ media }}/images/apple-touch-icon.png">
+	<link rel="stylesheet" href="/luci-static/bootstrap/cascade.css?v={{ version.luciversion }}">
+	<link rel="stylesheet" media="only screen and (max-device-width: 854px)" href="/luci-static/bootstrap/mobile.css?v={{ version.luciversion }}">
+	<link rel="stylesheet" href="{{ media }}/css/style.css?v={{ version.luciversion }}">
+	<link rel="stylesheet" href="{{ media }}/css/codex-compat.css?v={{ version.luciversion }}">
+	{% if (node?.css): %}
+	<link rel="stylesheet" href="{{ resource }}/{{ node.css }}">
+	{% endif -%}
+	{% if (css): %}
+	<style title="text/css">{{ css }}</style>
+	{% endif -%}
+	<script src="{{ dispatcher.build_url('admin/translations', dispatcher.lang) }}?v={{ version.luciversion }}"></script>
+	<script src="{{ resource }}/cbi.js?v={{ version.luciversion }}"></script>
+	<script src="{{ resource }}/luci.js?v={{ version.luciversion }}"></script>
+	<script src="{{ media }}/js/jquery.min.js?v={{ version.luciversion }}"></script>
+	<script src="{{ media }}/js/design.js?v={{ version.luciversion }}"></script>
+</head>
+<body class="{{ body_class }}" data-page="{{ entityencode(join('-', ctx.request_path), true) }}" {% if (mode != 'normal'): %}data-theme="{{ mode }}"{% endif %}>
+	{% if (mode == 'normal'): %}
+	<script>
+		(function() {
+			var mq = window.matchMedia('(prefers-color-scheme: dark)');
+			var setTheme = function(match) {
+				document.body.setAttribute('data-theme', match.matches ? 'dark' : 'light');
+			};
+			setTheme(mq);
+			mq.addEventListener && mq.addEventListener('change', setTheme);
+		})();
+	</script>
+	{% endif %}
+
+	<header>
+		{% if (navbar == 'display' && ctx.authsession): %}
+		<div class="navbar">
+			<a href="{{ dispatcher.build_url('admin/status/overview') }}"><img src="{{ media }}/images/home.png"></a>
+			<a href="{{ dispatcher.build_url(`admin/services/${navbar_proxy}`) }}"><img src="{{ media }}/images/{{ navbar_proxy == 'openclash' ? 'openclash' : 'ssr' }}.png"></a>
+			<a href="{{ dispatcher.build_url('admin/network/network') }}"><img src="{{ media }}/images/link.png"></a>
+			<a href="{{ dispatcher.build_url('admin/status/realtime') }}"><img src="{{ media }}/images/rank.png"></a>
+			<a href="{{ dispatcher.build_url('admin/system/admin') }}"><img src="{{ media }}/images/user.png"></a>
+		</div>
+		{% endif %}
+
+		<div class="container">
+			<span class="showSide"></span>
+			<a class="brand" href="#">{{ striptags(boardinfo.hostname ?? '?') }}</a>
+			<div class="pull-right" id="indicators"></div>
+		</div>
+	</header>
+
+	<div class="main">
+		<div class="loading" style="display:none"><span><span class="loading-img"></span>{{ _('Loading view…') }}</span></div>
+
+		<div class="main-left"{% if (!ctx.authsession): %} style="display:none"{% endif %}>
+			<ul class="nav" id="designmenu" style="display:none"></ul>
+		</div>
+
+		<div class="main-right">
+			<div class="darkMask"></div>
+			<div id="maincontent">
+				<div class="container">
+					{% if (getuid() == 0 && getspnam('root')?.pwdp === ''): %}
+					<div class="alert-message warning">
+						<h4>{{ _('No password set!') }}</h4>
+						<p>{{ _('There is no password set on this router. Please configure a root password to protect the web interface.') }}</p>
+						{% if (dispatcher.lookup('admin/system/admin')): %}
+						<div class="right"><a class="btn" href="{{ dispatcher.build_url('admin/system/admin') }}">{{ _('Go to password configuration...') }}</a></div>
+						{% endif %}
+					</div>
+					{% endif %}
+
+					<noscript>
+						<div class="alert-message warning">
+							<h4>{{ _('JavaScript required!') }}</h4>
+							<p>{{ _('You must enable JavaScript in your browser or LuCI will not work properly.') }}</p>
+						</div>
+					</noscript>
+
+					<div id="tabmenu" style="display:none"></div>

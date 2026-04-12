@@ -1,0 +1,25 @@
+				</div>
+			</div>
+
+			<footer class="footer" style="text-align:center">
+				<a href="https://github.com/openwrt/luci" target="_blank" rel="noreferrer">Powered by {{ version.luciname }} ({{ version.luciversion }})</a> |
+				<a href="{{ entityencode(version.disturl ?? '#', true) }}" target="_blank" rel="noreferrer">{{ version.distname }} {{ version.distversion }}-{{ version.distrevision }}</a>
+				<ul class="breadcrumb pull-right" id="modemenu" style="display:none"></ul>
+			</footer>
+		</div>
+	</div>
+
+	<script>
+		var luciLocation = {{ ctx.path }};
+	</script>
+	<script src="{{ media }}/js/script.js?v={{ version.luciversion }}"></script>
+	{% if (ctx.authsession): %}
+	<script>
+		L.require('menu-design').then(function() {
+			if (window.designThemeRefresh)
+				window.designThemeRefresh();
+		});
+	</script>
+	{% endif %}
+</body>
+</html>

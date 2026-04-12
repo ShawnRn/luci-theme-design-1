@@ -1,0 +1,9 @@
+product: luci-theme-design-1
+skill_repo: /Users/shawnrain/agent-skills
+enabled_skills: []
+enabled_workflows: []
+preferred_agents:
+  - codex
+local_overrides:
+  - luci-theme-design-24_10-rules
+adapter_mode: generated-only
