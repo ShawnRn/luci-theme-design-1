@@ -1,0 +1,59 @@
+/* LuCI 23.05+ 兼容性补丁 - Design 主题 */
+
+/* 修复 JavaScript 渲染的表单容器间距 */
+.cbi-map {
+    margin: 0 10px 20px 10px !important;
+}
+
+/* 移除 23.05+ 默认存在的冗余外边距 */
+#maincontent > .container > .alert-message {
+    margin: 20px 10px 0 10px;
+}
+
+/* 修复侧边栏在 23.05+ 下的高度计算 */
+.main-left {
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+}
+
+/* 确保表单标题在移动端不换行 */
+.cbi-value-title {
+    white-space: nowrap;
+}
+
+/* 修复登录页居中问题 */
+body.node-main-login .main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 100px);
+}
+
+/* 适配新版按钮样式 */
+.btn, .cbi-button {
+    border-radius: 4px !important;
+    padding: 6px 12px !important;
+    text-transform: none !important;
+}
+
+/* 修复表格响应式溢出 */
+.table, .cbi-section-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* 焦点可见性 */
+:focus-visible {
+    outline: 2px solid #5d9cec;
+    outline-offset: 2px;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

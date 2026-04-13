@@ -33,9 +33,7 @@
 	local uci = require 'luci.model.uci'.cursor()
 	local fs  = require "nixio.fs"
 
-	local boardinfo = util.ubus("system", "board")
-	local boardinfo={}
-	boardinfo.hostname=sys.hostname()
+	local boardinfo = util.ubus("system", "board") or { hostname = sys.hostname() }
 	
 	local request  = disp.context.path
 	local request2 = disp.context.request
@@ -152,6 +150,7 @@
 	<meta name="theme-color" media="(prefers-color-scheme: light)" content="white">
 	<meta name="theme-color" media="(prefers-color-scheme: dark)" content="black">
 
+    <link rel="stylesheet" href="<%=media%>/css/compat-openwrt23.css?v=<%= ver.luciversion %>">
     <link rel="shortcut icon" href="<%=media%>/favicon.ico">
     <% if node and node.css then %>
         <link rel="stylesheet" href="<%=resource%>/<%=node.css%>">
@@ -163,6 +162,7 @@
     <% end -%>
 	<script src="<%=media%>/js/jquery.min.js?v=<%= ver.luciversion %>"></script>
 	<script src="<%=media%>/js/design.js?v=<%= ver.luciversion %>"></script>
+	<script src="<%=media%>/js/compat.js?v=<%= ver.luciversion %>"></script>
 </head>
 
 <body class="lang_<%=luci.i18n.context.lang%> <%- if node then %><%= striptags( node.title ) %><%- end %> <% if luci.dispatcher.context.authsession then %>logged-in<% end %>"
