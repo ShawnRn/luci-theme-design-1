@@ -1,0 +1,35 @@
+{%
+	const boardinfo = ubus.call('system', 'board') ?? { hostname: 'OpenWrt' };
+-%}
+<!DOCTYPE html>
+<html lang="{{ dispatcher.lang }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover" />
+    <title>{{ striptags(`${boardinfo.hostname}${node ? ` - ${node.title}` : ''}`) }} - LuCI</title>
+    <link rel="stylesheet" href="{{ media }}/css/style.css">
+    <link rel="stylesheet" href="{{ media }}/css/compat-openwrt23.css">
+    <link rel="icon" href="{{ media }}/favicon.ico">
+    <script src="{{ media }}/js/jquery.min.js"></script>
+    <script src="{{ media }}/js/compat.js"></script>
+</head>
+<body class="lang_{{ dispatcher.lang }} {{ node ? striptags(node.title) : '' }} {{ ctx.authsession ? 'logged-in' : '' }}" data-theme="light">
+<header>
+    <div class="container">
+        <span class="showSide"></span>
+        <a class="brand" href="#">{{ boardinfo.hostname }}</a>
+        <div class="pull-right">
+            <div id="xhr_poll_status" style="display:none">
+                <span class="label success" id="xhr_poll_status_on">●</span>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="main">
+    <div class="main-left">
+        <ul class="nav" id="mainmenu" style="display:none"></ul>
+    </div>
+    <div class="main-right">
+        <div class="darkMask"></div>
+        <div id="maincontent">
+            <div class="container">

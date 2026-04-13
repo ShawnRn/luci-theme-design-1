@@ -1,0 +1,14 @@
+            </div>
+        </div>
+        <footer>
+            <span>Powered by LuCI Design Theme</span>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    L.require('menu-design').then(function(m) {
+        m.render(luciLocation);
+    });
+</script>
+</body>
+</html>

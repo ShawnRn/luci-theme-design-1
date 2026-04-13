@@ -48,8 +48,15 @@ jobs:
           find sdk/bin/packages -name 'luci-theme-design*.ipk' -exec cp {} dist/luci-theme-design_universal_all.ipk \;
           ls -lah dist
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      - name: Create Release
+        if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
         with:
-          name: luci-theme-design-universal
-          path: dist/*.ipk
+          files: dist/*.ipk
+          tag_name: ${{ github.ref_name }}-${{ github.run_id }}
+          name: Build ${{ github.ref_name }} (Run ${{ github.run_id }})
+          body: |
+            Automated build for LuCI 24.10 compatible Design Theme.
+            Architecture: Universal (all)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
