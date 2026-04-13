@@ -48,6 +48,12 @@ jobs:
           find sdk/bin/packages -name 'luci-theme-design*.ipk' -exec cp {} dist/luci-theme-design_universal_all.ipk \;
           ls -lah dist
 
+      - name: Upload artifacts
+              uses: actions/upload-artifact@v4
+                      with:
+                                name: luci-theme-design-universal
+                                          path: dist/luci-theme-design_universal_all.ipk
+                                          
       - name: Create Release
         if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
